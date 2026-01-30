@@ -37,7 +37,7 @@ const services = [
     subtitle: "Technical Solutions",
     desc: "Robust technical foundations built for scale and performance.",
     color: "white",
-    accent: "#ff6d00",
+    accent: "#8E4585",
     img: "https://images.unsplash.com/photo-1555099962-4199c345e5dd?q=80&w=800&auto=format&fit=crop",
   },
 ];
