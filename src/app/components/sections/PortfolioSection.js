@@ -1,99 +1,146 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useLayoutEffect, useState, useEffect } from "react";
 import Link from "next/link";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { projects } from "../../data/siteData";
-import { usePortfolioAnimation } from "../../hooks/usePortfolioAnimation";
+
+const VideoCard = ({ src, poster, color }) => {
+  const videoRef = useRef(null);
+
+  const handleMouseEnter = () => {
+    // Graj tylko gdy myszka jest nad kafelkiem
+    videoRef.current?.play().catch(err => console.log("Blokada autostartu", err));
+  };
+
+  const handleMouseLeave = () => {
+    // Zatrzymaj i wróć do początku (lub zostań na klatce) po zjechaniu myszką
+    videoRef.current?.pause();
+    // Opcjonalnie: videoRef.current.currentTime = 0; // Wróć do początku zdjęcia
+  };
+
+  return (
+    <video
+      ref={videoRef}
+      src={src}
+      poster={poster} // To jest Twoje statyczne zdjęcie widoczne na początku
+      loop
+      muted
+      playsInline
+      preload="metadata"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      className="w-full h-full object-cover transition-all duration-700 scale-105 group-hover:scale-100"
+      style={{ backgroundColor: color }}
+    />
+  );
+};
 
 export default function PortfolioSection() {
   const portfolioSectionRef = useRef(null);
   const portfolioTrackRef = useRef(null);
-  const portfolioImagesRef = useRef([]);
 
-  usePortfolioAnimation({
-    portfolioSectionRef,
-    portfolioTrackRef,
-    portfolioImagesRef,
-  });
+  useLayoutEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const ctx = gsap.context(() => {
+      const track = portfolioTrackRef.current;
+      const container = portfolioSectionRef.current;
+
+      const getScrollAmount = () => -(track.scrollWidth - window.innerWidth);
+
+      gsap.to(track, {
+        x: getScrollAmount,
+        ease: "none",
+        scrollTrigger: {
+          trigger: container,
+          start: "top top",
+          end: () => `+=${track.scrollWidth}`,
+          pin: true,
+          scrub: 1,
+          invalidateOnRefresh: true,
+        },
+      });
+    }, portfolioSectionRef);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
     <section
       ref={portfolioSectionRef}
-      className="relative h-screen bg-white overflow-hidden text-black"
+      className="relative h-screen bg-white overflow-hidden flex flex-col justify-start pt-12 md:pt-20"
       style={{ zIndex: 30 }}
     >
-      {/* NAGŁÓWEK */}
-      <div className="absolute top-16 md:top-22 left-0 w-full px-4 md:px-8 lg:px-20 z-20 pointer-events-none flex flex-col md:flex-row justify-between items-start md:items-end mix-blend-difference text-white gap-4">
-        <h2 className="text-4xl md:text-5xl lg:text-7xl font-black tracking-tighter leading-none shrink-0 uppercase">
-          Nasze ostatnie
-          <br />
-          <span className="text-white">projekty</span>
-        </h2>
-        <p className="max-w-xs text-xs md:text-sm lg:text-base font-medium leading-normal md:mb-3">
-          Poniżej znajdują się nasze ostatnie projekty
-          <br className="hidden md:block" />
-          zescroluj w bok aby zobaczyć naszą pełną galerię.
+      {/* NAGŁÓWEK SEKCJI */}
+      <div className="relative w-full px-4 md:px-8 lg:px-20 z-20 flex flex-col md:flex-row justify-between items-start md:items-end text-black gap-4 mb-6">
+        <div className="shrink-0">
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter leading-[0.9] uppercase">
+            Nasze ostatnie
+            <br />
+            <span className="text-gray-300">projekty</span>
+          </h2>
+        </div>
+        <p className="max-w-xs text-xs md:text-sm font-medium leading-normal text-gray-500 md:mb-2 text-right">
+          Poniżej znajdują się nasze ostatnie projekty. <br />
+          Zescroluj w bok, aby zobaczyć pełną galerię.
         </p>
       </div>
 
-      {/* TRACK */}
-      <div
-        ref={portfolioTrackRef}
-        className="flex h-full w-max items-center pl-4 md:pl-8 lg:pl-20 pr-8 md:pr-20 pt-20"
-      >
-        {projects.map((project, index) => (
-          <div
-            key={project.id}
-            className="relative h-[70vh] md:h-[75vh] lg:h-[80vh] w-[85vw] md:w-[70vw] lg:w-[60vw] xl:w-[50vw] flex-shrink-0 mr-6 md:mr-8 group overflow-hidden bg-gray-100 rounded-3xl md:rounded-4xl"
-          >
-            <div className="relative w-full h-full overflow-hidden bg-gray-200">
-              {/* DIV Z KOLOREM */}
-              <div
-                ref={(el) => (portfolioImagesRef.current[index] = el)}
-                className="w-full h-full scale-125 transition-transform duration-700 ease-out"
-                style={{ backgroundColor: project.color }}
-              />
-
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500" />
-              <div className="absolute bottom-0 left-0 w-full p-4 md:p-6 lg:p-8 text-white opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0">
-                <div className="flex items-center gap-2 md:gap-3 mb-2">
-                  <span className="text-[10px] md:text-xs font-bold uppercase tracking-widest border border-white/40 px-2 md:px-3 py-1 rounded-full backdrop-blur-sm">
+      {/* TRACK Z KAFELKAMI */}
+      <div ref={portfolioTrackRef} className="flex w-max items-start pl-4 md:pl-8 lg:pl-20 pr-8 md:pr-20">
+        <div className="flex gap-6 md:gap-12 pr-32">
+          {projects.map((project, index) => (
+            <div key={project.id} className="group w-[80vw] md:w-[500px] lg:w-[600px] flex-shrink-0">
+              
+              {/* Info nad kafelkiem */}
+              <div className="flex justify-between items-end mb-3 px-1 pt-4">
+                <div>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400 block mb-1">
                     {project.category}
                   </span>
+                  <h3 className="text-xl md:text-2xl font-bold text-black uppercase tracking-tight">
+                    {project.title}
+                  </h3>
                 </div>
-                <h3 className="text-3xl md:text-4xl lg:text-6xl font-black uppercase tracking-tight">
-                  {project.title}
-                </h3>
+                <span className="text-3xl font-black text-black/10 italic">0{index + 1}</span>
               </div>
-            </div>
-            <span className="absolute top-2 md:top-4 right-4 md:right-6 text-6xl md:text-8xl lg:text-9xl font-black text-white mix-blend-overlay opacity-50 z-10 select-none">
-              0{index + 1}
-            </span>
-          </div>
-        ))}
 
-        <div className="h-[70vh] md:h-[75vh] lg:h-[80vh] w-[250px] md:w-[300px] flex-shrink-0 flex items-center justify-center border-l border-gray-100 ml-6 md:ml-8">
-          <Link href="/portfolio" className="group flex flex-col items-center gap-4 md:gap-6">
-            <div className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 rounded-full border-2 border-black flex items-center justify-center group-hover:bg-black group-hover:text-white transition-all duration-300">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-                />
-              </svg>
+              {/* KAFELEK (VIDEO LUB OBRAZ) */}
+              <div className="relative aspect-video overflow-hidden rounded-[2rem] bg-gray-100 shadow-xl border border-gray-100">
+                {project.image && project.image.endsWith(".mp4") ? (
+                  <VideoCard src={project.image} poster={project.poster} color={project.color} />
+                ) : project.image ? (
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-all duration-700 scale-105 group-hover:scale-100"
+                  />
+                ) : (
+                  <div
+                    className="w-full h-full transition-all duration-700 scale-105 group-hover:scale-100"
+                    style={{ backgroundColor: project.color || "#e5e7eb" }}
+                  />
+                )}
+                <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+              </div>
+
+              
             </div>
-            <span className="text-base md:text-lg lg:text-xl font-bold uppercase tracking-widest text-center">
-              View All Projects
-            </span>
-          </Link>
+          ))}
+
+          {/* PRZYCISK KOŃCOWY */}
+          <div className="flex items-center justify-center w-[250px] h-full pt-20">
+            <Link href="/portfolio" className="group flex flex-col items-center gap-4">
+                <div className="w-20 h-20 rounded-full border border-black flex items-center justify-center group-hover:bg-black group-hover:text-white transition-all duration-500">
+                    <svg fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                    </svg>
+                </div>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-black">Wszystkie</span>
+            </Link>
+          </div>
         </div>
       </div>
     </section>

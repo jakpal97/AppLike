@@ -44,22 +44,28 @@ export const projects = [
   {
     id: 1,
     title: "Yelonmedia",
-    category: "Website",
-    tags: ["Next.js", "WebGL"],
-    color: "#334155",
+    category: "Strona WWW",
+    
+    image: '/filmYelonMedia.mp4',
+    poster: '/YelonMedia.webp', // Dodaj miniaturkę do folderu public!
+    color: "#1a1a1a"
   },
   {
     id: 2,
     title: "Dawid Duda",
-    category: "Web App",
-    tags: ["React", "Node.js"],
+    category: "Strona WWW",
+    
+    image: 'dawidDudaFilm.mp4',
+    poster: '/dawidDudaStrona.webp',
     color: "#475569",
   },
   {
     id: 3,
-    title: "FinTech Dash",
-    category: "SaaS",
-    tags: ["Vue", "D3.js"],
+    title: "Bistro Miarki 8",
+    category: "kompletny projekt strony WWW",
+   
+    image: './bistroMiarki8.mp4',
+    poster: '/bistroMiarki8.png',
     color: "#64748b",
   },
   {
@@ -67,6 +73,7 @@ export const projects = [
     title: "Social AI",
     category: "Mobile",
     tags: ["React Native", "OpenAI"],
+    image: '', // Możesz tu dodać link do zdjęcia/filmu
     color: "#94a3b8",
   },
   {
@@ -74,10 +81,12 @@ export const projects = [
     title: "Neon City",
     category: "Concept",
     tags: ["UE5", "Blender"],
+    image: '',
     color: "#cbd5e1",
   },
 ];
 
+// ... reszta Twoich danych bez zmian
 // === DANE WHY US ===
 export const features = [
   {

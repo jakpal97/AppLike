@@ -94,8 +94,8 @@ export function useHeroAnimation({
         if (width < 768) return "-50vw"; // Large mobile
         if (width < 1024) return "-65vw"; // Tablet
         if (width < 1280) return "-100vw"; // Laptop
-        if (width < 1536) return "-110vw"; // Desktop
-        return "-200vw"; // Large Desktop
+        if (width < 1636) return "-200vw"; // Desktop
+        return "-150vw"; // Large Desktop
       };
 
       // Timeline #1: Hero główna animacja
