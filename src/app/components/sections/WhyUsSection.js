@@ -41,8 +41,8 @@ export default function WhyUsSection() {
             ref={whyUsTitleRef}
             className="text-4xl md:text-6xl lg:text-8xl font-black tracking-tighter leading-[0.9]"
           >
-            Why client <br />
-            choose us
+            Dlaczego my? <br />
+            
           </h2>
         </div>
 

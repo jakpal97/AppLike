@@ -35,6 +35,7 @@ export default function ServicesTransitionSection({
   const staticImg2Ref = useRef(null);
   const staticImg3Ref = useRef(null);
 
+  // Poprawione wywołanie hooka - przekazujemy tylko niezbędne referencje
   useServicesAnimation({
     secondSectionRef,
     floatingImg1Ref,
@@ -80,18 +81,7 @@ export default function ServicesTransitionSection({
             fill="currentColor"
             fillOpacity="1"
             d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-          ></path>
-        </svg>
-        <svg
-          className="absolute bottom-[-10%] right-[-10%] w-[120%] h-full text-blue-300 opacity-30 mix-blend-overlay"
-          viewBox="0 0 1440 320"
-          xmlns="http://www.w3.org/2000/svg"
-          preserveAspectRatio="none"
-        >
-          <path
-            fill="currentColor"
-            d="M0,64L60,80C120,96,240,128,360,122.7C480,117,600,75,720,80C840,85,960,139,1080,154.7C1200,171,1320,149,1380,138.7L1440,128L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"
-          ></path>
+          />
         </svg>
       </div>
 

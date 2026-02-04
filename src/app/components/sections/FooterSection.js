@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function FooterSection() {
   return (
     <section
-      className="relative h-screen bg-[#0a0a0a] text-white flex flex-col justify-between overflow-hidden mt-20"
+      className="relative h-screen bg-[#0a0a0a] text-white flex flex-col justify-between overflow-hidden mt-20 "
       style={{ zIndex: 60 }}
     >
       {/* TŁO */}

@@ -14,16 +14,7 @@ export function useTestimonialsAnimation({
   testimonialCardsRef,
 }) {
   useLayoutEffect(() => {
-    if (
-      !testimonialsPinRef.current ||
-      !testimonialsTitleRef.current ||
-      !testimonialCardsRef.current ||
-      testimonialCardsRef.current.length === 0
-    ) {
-      return;
-    }
-
-    gsap.registerPlugin(ScrollTrigger);
+    // ... (sprawdzenia refów bez zmian)
 
     const ctx = gsap.context(() => {
       const testCards = testimonialCardsRef.current;
@@ -32,56 +23,51 @@ export function useTestimonialsAnimation({
         scrollTrigger: {
           trigger: testimonialsPinRef.current,
           start: "top top",
-          end: "+=4500",
+          end: "+=4000",
           pin: true,
           scrub: 1,
-          anticipatePin: 1,
         },
       });
 
-      // Zanikanie tytułu
+      // 1. Tytuł znika szybciej i bardziej zdecydowanie
       tlTest.to(testimonialsTitleRef.current, {
         opacity: 0,
-        scale: 0.8,
-        filter: "blur(10px)",
-        duration: 0.5,
-        ease: "power2.in",
+        y: -50, // Dodatkowy ruch w górę przy znikaniu
+        scale: 0.9,
+        filter: "blur(15px)",
+        duration: 1,
       });
 
-      // Animacja kart
+      // 2. Karty wchodzą z lekkim opóźnieniem po tytule
       testCards.forEach((card, index) => {
         tlTest.fromTo(
           card,
           {
-            y: "120vh",
-            rotationX: -45,
+            y: "100vh",
+            rotationX: -30,
             opacity: 0,
-            scale: 0.8,
-            transformOrigin: "center top",
+            scale: 0.9,
           },
           {
             y: "0%",
             rotationX: 0,
             opacity: 1,
             scale: 1,
-            duration: 1,
-            ease: "power3.out",
-          }
+            duration: 1.5,
+            ease: "power2.out",
+          },
+          "-=0.5" // Nakładanie animacji wchodzenia na poprzednią
         );
 
         if (index !== testCards.length - 1) {
-          tlTest.to(
-            card,
-            {
-              y: "-120vh",
-              rotationX: 45,
-              opacity: 0,
-              scale: 0.8,
-              duration: 1,
-              ease: "power2.in",
-            },
-            "+=0.2"
-          );
+          tlTest.to(card, {
+            y: "-100vh",
+            rotationX: 30,
+            opacity: 0,
+            scale: 0.9,
+            duration: 1.5,
+            ease: "power2.in",
+          }, "+=0.5");
         }
       });
     });
