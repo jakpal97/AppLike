@@ -4,12 +4,7 @@ import { useRef } from "react";
 import { heroText } from "../../data/siteData";
 import { useHeroAnimation } from "../../hooks/useHeroAnimation";
 
-export default function HeroSection({
-  scrollContainerRef,
-  floatingImg1Ref,
-  floatingImg2Ref,
-  floatingImg3Ref,
-}) {
+export default function HeroSection({ scrollContainerRef }) {
   const starRef = useRef(null);
   const starContainerRef = useRef(null);
   const starPillRef = useRef(null);
@@ -27,16 +22,13 @@ export default function HeroSection({
     lettersRef,
     heroSubtitleRef,
     heroContentRef,
-    floatingImg1Ref,
-    floatingImg2Ref,
-    floatingImg3Ref,
   });
 
   return (
     <div ref={scrollContainerRef} className="h-[200vh] bg-white">
       <div
         ref={heroContentRef}
-        className="fixed top-0 left-0 w-full h-screen flex items-center overflow-hidden"
+        className="fixed top-0 left-0 w-full h-screen flex items-center overflow-hidden bg-white"
         style={{ zIndex: 30 }}
       >
         <div ref={heroSliderRef} className="flex items-center px-[2vw] md:px-[3vw] lg:px-[4vw] xl:px-[5vw]">

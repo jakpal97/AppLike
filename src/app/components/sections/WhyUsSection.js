@@ -59,25 +59,26 @@ export default function WhyUsSection() {
                   ? "bg-blue-600 text-white min-h-[250px] md:min-h-[300px]"
                   : "bg-white text-black min-h-[250px] md:min-h-[300px]"
               }`}
+              style={{ padding: "clamp(0.75rem, 2vh, 2.5rem)" }}
             >
               {item.type === "text" && (
-                <p className="text-2xl md:text-3xl lg:text-4xl font-medium leading-tight tracking-tight">
+                <p className="font-medium leading-tight tracking-tight" style={{ fontSize: "clamp(0.9rem, 2vh, 1.5rem)" }}>
                   {item.content}
                 </p>
               )}
 
               {item.type === "stat-92" && (
                 <>
-                  <div className="flex justify-between items-start w-full flex-wrap gap-4">
-                    <span className="text-6xl md:text-7xl lg:text-8xl font-medium tracking-tighter flex">
+                  <div className="flex justify-between items-start w-full flex-wrap gap-2">
+                    <span className="font-medium tracking-tighter flex" style={{ fontSize: "clamp(2rem, 4.5vh, 4rem)" }}>
                       <span ref={stat92Ref}>{item.value}</span>
                       {item.suffix}
                     </span>
-                    <div className="w-20 md:w-24 h-2 bg-gray-100 rounded-full mt-4 md:mt-6 overflow-hidden">
+                    <div className="w-16 h-2 bg-gray-100 rounded-full mt-3 overflow-hidden">
                       <div ref={bar92Ref} className="h-full bg-red-600 rounded-full w-0" />
                     </div>
                   </div>
-                  <p className="text-base md:text-lg opacity-80 mt-6 md:mt-8 font-medium border-t border-current/10 pt-4 md:pt-6">
+                  <p className="text-xs opacity-80 mt-2 font-medium border-t border-current/10 pt-2">
                     {item.label}
                   </p>
                 </>
@@ -85,18 +86,18 @@ export default function WhyUsSection() {
 
               {item.type === "stat-100" && (
                 <>
-                  <div className="flex justify-between items-start w-full flex-wrap gap-4">
-                    <span className="text-6xl md:text-7xl lg:text-8xl font-medium tracking-tighter flex">
+                  <div className="flex justify-between items-start w-full flex-wrap gap-2">
+                    <span className="font-medium tracking-tighter flex" style={{ fontSize: "clamp(2rem, 4.5vh, 4rem)" }}>
                       <span ref={stat100Ref}>{item.value}</span>
                       {item.suffix}
                     </span>
-                    <div className="flex -space-x-4 mt-4 md:mt-6">
-                      <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-red-400 border-4 border-white"></div>
-                      <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-blue-400 border-4 border-white"></div>
-                      <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-yellow-400 border-4 border-white"></div>
+                    <div className="flex -space-x-3 mt-3">
+                      <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-red-400 border-4 border-white"></div>
+                      <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-blue-400 border-4 border-white"></div>
+                      <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-yellow-400 border-4 border-white"></div>
                     </div>
                   </div>
-                  <p className="text-base md:text-lg opacity-80 mt-6 md:mt-8 font-medium border-t border-current/10 pt-4 md:pt-6">
+                  <p className="text-xs opacity-80 mt-2 font-medium border-t border-current/10 pt-2">
                     {item.label}
                   </p>
                 </>
@@ -104,16 +105,16 @@ export default function WhyUsSection() {
 
               {item.type === "stat-30k" && (
                 <>
-                  <div className="flex justify-between items-start flex-wrap gap-4">
-                    <span className="text-6xl md:text-7xl lg:text-8xl font-medium tracking-tighter flex">
+                  <div className="flex justify-between items-start flex-wrap gap-2">
+                    <span className="font-medium tracking-tighter flex" style={{ fontSize: "clamp(2rem, 4.5vh, 4rem)" }}>
                       <span ref={stat30kRef}>{item.value}</span>
                       {item.suffix}
                     </span>
-                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-gray-100 flex items-center justify-center mt-4 md:mt-6">
-                      <span className="text-xl md:text-2xl">🚀</span>
+                    <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray-100 flex items-center justify-center mt-3">
+                      <span className="text-lg md:text-xl">🚀</span>
                     </div>
                   </div>
-                  <p className="text-base md:text-lg opacity-80 mt-6 md:mt-8 font-medium border-t border-current/10 pt-4 md:pt-6">
+                  <p className="text-xs opacity-80 mt-2 font-medium border-t border-current/10 pt-2">
                     {item.label}
                   </p>
                 </>
@@ -121,14 +122,14 @@ export default function WhyUsSection() {
 
               {item.type === "last-card" && (
                 <div className="flex flex-col h-full justify-center">
-                  <div className="w-12 h-12 md:w-16 md:h-16 bg-white text-blue-600 rounded-full flex items-center justify-center mb-4 md:mb-6">
+                  <div className="w-8 h-8 bg-white text-blue-600 rounded-full flex items-center justify-center mb-3">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
                       viewBox="0 0 24 24"
                       strokeWidth={2}
                       stroke="currentColor"
-                      className="w-6 h-6 md:w-8 md:h-8"
+                      className="w-4 h-4"
                     >
                       <path
                         strokeLinecap="round"
@@ -137,7 +138,7 @@ export default function WhyUsSection() {
                       />
                     </svg>
                   </div>
-                  <p className="text-2xl md:text-3xl lg:text-4xl font-medium leading-tight tracking-tight">
+                  <p className="font-medium leading-tight tracking-tight" style={{ fontSize: "clamp(0.9rem, 2vh, 1.5rem)" }}>
                     {item.content}
                   </p>
                 </div>
