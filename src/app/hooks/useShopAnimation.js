@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect } from "react";
+import { useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -9,7 +9,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
  * Obsługuje: fade-in kart produktów
  */
 export function useShopAnimation({ shopCardsRef }) {
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (
       !shopCardsRef.current ||
       shopCardsRef.current.length === 0 ||

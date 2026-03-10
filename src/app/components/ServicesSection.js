@@ -33,6 +33,7 @@ const services = [
 
 export default function ServicesSection() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const activeIndexRef = useRef(0);
   const containerRef = useRef(null);
   const triggerRef = useRef(null);
 
@@ -43,16 +44,16 @@ export default function ServicesSection() {
       ScrollTrigger.create({
         trigger: triggerRef.current,
         start: "top top",
-        end: `+=${totalSlides * 100}%`, // Długość scrolla zależna od ilości usług
+        end: `+=${totalSlides * 100}%`,
         pin: true,
         scrub: true,
         onUpdate: (self) => {
-          // Obliczamy index na podstawie postępu scrolla
           const newIndex = Math.min(
             Math.floor(self.progress * totalSlides),
             totalSlides - 1
           );
-          if (newIndex !== activeIndex) {
+          if (newIndex !== activeIndexRef.current) {
+            activeIndexRef.current = newIndex;
             setActiveIndex(newIndex);
           }
         },
@@ -60,10 +61,10 @@ export default function ServicesSection() {
     }, triggerRef);
 
     return () => ctx.revert();
-  }, [activeIndex]);
+  }, []);
 
   return (
-    <div ref={triggerRef} className="bg-white">
+    <div ref={triggerRef} className="bg-white min-h-screen" style={{ position: "relative", zIndex: 50 }}>
       <div className="relative w-full h-screen flex items-center justify-center px-4 lg:px-20 overflow-hidden">
         
         <div className="grid lg:grid-cols-12 gap-12 w-full max-w-[1500px] items-center">

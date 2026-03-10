@@ -1,6 +1,7 @@
 'use client'
 
-import { useRef } from 'react'
+import { useRef, useEffect } from 'react'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import HeroSection from './sections/HeroSection'
 import AboutSlide from './AboutSlide'
 import About from './About'
@@ -13,6 +14,15 @@ import FooterSection from './sections/FooterSection'
 
 export default function Hero() {
 	const scrollContainerRef = useRef(null)
+
+	// Uruchamia się PO wszystkich dzieciach — odświeża pozycje wszystkich triggerów
+	// gdy spacery Services i Portfolio są już w DOM
+	useEffect(() => {
+		const id = setTimeout(() => {
+			ScrollTrigger.refresh()
+		}, 100)
+		return () => clearTimeout(id)
+	}, [])
 
 	return (
 		<>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useLayoutEffect, useState, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -41,7 +41,7 @@ export default function PortfolioSection() {
   const portfolioSectionRef = useRef(null);
   const portfolioTrackRef = useRef(null);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
@@ -62,6 +62,7 @@ export default function PortfolioSection() {
           invalidateOnRefresh: true,
         },
       });
+
     }, portfolioSectionRef);
 
     return () => ctx.revert();
@@ -71,7 +72,6 @@ export default function PortfolioSection() {
     <section
       ref={portfolioSectionRef}
       className="relative h-screen bg-white overflow-hidden flex flex-col justify-start pt-12 md:pt-20"
-      style={{ zIndex: 30 }}
     >
       {/* NAGŁÓWEK SEKCJI */}
       <div className="relative w-full px-4 md:px-8 lg:px-20 z-20 flex flex-col md:flex-row justify-between items-start md:items-end text-black gap-4 mb-6">

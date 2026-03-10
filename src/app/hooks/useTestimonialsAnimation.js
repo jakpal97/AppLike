@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect } from "react";
+import { useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -13,7 +13,7 @@ export function useTestimonialsAnimation({
   testimonialsTitleRef,
   testimonialCardsRef,
 }) {
-  useLayoutEffect(() => {
+  useEffect(() => {
     // ... (sprawdzenia refów bez zmian)
 
     const ctx = gsap.context(() => {

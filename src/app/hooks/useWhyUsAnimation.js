@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect } from "react";
+import { useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -18,7 +18,7 @@ export function useWhyUsAnimation({
   stat100Ref,
   stat30kRef,
 }) {
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (
       !whyUsPinRef.current ||
       !whyUsContentRef.current ||
