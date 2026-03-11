@@ -18,9 +18,7 @@ export default function ShopSection() {
     >
       <div className="px-4 md:px-8 lg:px-20 mb-12 md:mb-16 lg:mb-20 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
         <div>
-          <span className="text-blue-600 font-bold uppercase tracking-widest mb-3 md:mb-4 block text-xs md:text-sm">
-            Gotowe rozwiązania
-          </span>
+          
           <h2 className="text-4xl md:text-5xl lg:text-7xl font-black tracking-tighter uppercase leading-[0.9]">
             Kup szablon & <br />
             Zacznij szybciej

@@ -28,123 +28,96 @@ export default function WhyUsSection() {
   return (
     <section
       ref={whyUsPinRef}
-      className="relative h-screen w-full bg-white overflow-hidden"
+      className="relative h-screen w-full bg-white overflow-hidden" // Tło sekcji pozostaje białe
       style={{ zIndex: 50 }}
     >
       <div
         ref={whyUsContentRef}
-        className="w-full h-full flex flex-col md:flex-row bg-white text-black relative px-4 md:px-8 lg:px-20"
+        className="w-full h-full flex flex-col md:flex-row bg-white text-black relative px-6 md:px-12 lg:px-24"
       >
-        {/* Lewa kolumna - Tytuł */}
+        {/* Lewa kolumna */}
         <div className="w-full md:w-1/2 flex items-center justify-start h-full pt-16 md:pt-0">
           <h2
             ref={whyUsTitleRef}
-            className="text-4xl md:text-6xl lg:text-8xl font-black tracking-tighter leading-[0.9]"
+            className="text-5xl md:text-7xl lg:text-9xl font-black tracking-tighter leading-[0.85]"
           >
-            Dlaczego my? <br />
-            
+            Dlaczego <br />
+            my?
           </h2>
         </div>
 
         {/* Prawa kolumna - Karty */}
         <div
           ref={rightColumnRef}
-          className="w-full md:w-1/2 flex flex-col gap-4 md:gap-6 pt-20 md:pt-32 pb-20 md:pb-32"
+          className="w-full md:w-1/2 flex flex-col gap-8 pt-20 md:pt-32 pb-20 md:pb-32"
         >
-          {features.map((item) => (
-            <div
-              key={item.id}
-              className={`feature-card p-6 md:p-8 lg:p-10 rounded-2xl md:rounded-[2rem] flex flex-col justify-between shadow-xl border border-gray-100 ${
-                item.type === "last-card"
-                  ? "bg-blue-600 text-white min-h-[250px] md:min-h-[300px]"
-                  : "bg-white text-black min-h-[250px] md:min-h-[300px]"
-              }`}
-              style={{ padding: "clamp(0.75rem, 2vh, 2.5rem)" }}
-            >
-              {item.type === "text" && (
-                <p className="font-medium leading-tight tracking-tight" style={{ fontSize: "clamp(0.9rem, 2vh, 1.5rem)" }}>
-                  {item.content}
-                </p>
-              )}
+          {features.map((item) => {
+            const isLast = item.type === "last-card";
+            
+            return (
+              <div
+                key={item.id}
+                className={`feature-card group relative p-8 md:p-12 rounded-[2.5rem] flex flex-col justify-between border transition-all duration-500 ease-in-out min-h-[300px] md:min-h-[340px] 
+                ${isLast 
+                  ? "bg-blue-600 text-white border-transparent shadow-[0_20px_50px_rgba(37,99,235,0.3)]" 
+                  : "bg-white text-black border-black/[0.04] shadow-[0_10px_30px_rgba(0,0,0,0.04),0_1px_8px_rgba(0,0,0,0.02)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] hover:-translate-y-1"
+                }`}
+              >
+                {/* ID elementu */}
+                <span className={`absolute top-8 right-10 text-[10px] tracking-[0.3em] font-bold opacity-30`}>
+                  {String(item.id).padStart(2, "0")}
+                </span>
 
-              {item.type === "stat-92" && (
-                <>
-                  <div className="flex justify-between items-start w-full flex-wrap gap-2">
-                    <span className="font-medium tracking-tighter flex" style={{ fontSize: "clamp(2rem, 4.5vh, 4rem)" }}>
-                      <span ref={stat92Ref}>{item.value}</span>
-                      {item.suffix}
-                    </span>
-                    <div className="w-16 h-2 bg-gray-100 rounded-full mt-3 overflow-hidden">
-                      <div ref={bar92Ref} className="h-full bg-red-600 rounded-full w-0" />
-                    </div>
-                  </div>
-                  <p className="text-xs opacity-80 mt-2 font-medium border-t border-current/10 pt-2">
-                    {item.label}
+                {/* Content Logic */}
+                <div className="flex flex-col h-full">
+                  <p className={`text-[11px] uppercase tracking-[0.25em] mb-6 font-bold ${isLast ? "text-white/60" : "text-black/40"}`}>
+                    {item.type === "text" ? "Podejście" : 
+                     item.type === "stat-92" ? "Satysfakcja" :
+                     item.type === "stat-100" ? "Standard" :
+                     item.type === "stat-30k" ? "Wsparcie" : "Efekt"}
                   </p>
-                </>
-              )}
 
-              {item.type === "stat-100" && (
-                <>
-                  <div className="flex justify-between items-start w-full flex-wrap gap-2">
-                    <span className="font-medium tracking-tighter flex" style={{ fontSize: "clamp(2rem, 4.5vh, 4rem)" }}>
-                      <span ref={stat100Ref}>{item.value}</span>
-                      {item.suffix}
-                    </span>
-                    <div className="flex -space-x-3 mt-3">
-                      <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-red-400 border-4 border-white"></div>
-                      <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-blue-400 border-4 border-white"></div>
-                      <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-yellow-400 border-4 border-white"></div>
-                    </div>
-                  </div>
-                  <p className="text-xs opacity-80 mt-2 font-medium border-t border-current/10 pt-2">
-                    {item.label}
-                  </p>
-                </>
-              )}
+                  <div className="flex-grow flex flex-col justify-center">
+                    {(item.type === "text" || item.type === "last-card") && (
+                      <p className="font-semibold leading-tight tracking-tight" style={{ fontSize: "clamp(1.2rem, 2.8vh, 1.85rem)" }}>
+                        {item.content}
+                      </p>
+                    )}
 
-              {item.type === "stat-30k" && (
-                <>
-                  <div className="flex justify-between items-start flex-wrap gap-2">
-                    <span className="font-medium tracking-tighter flex" style={{ fontSize: "clamp(2rem, 4.5vh, 4rem)" }}>
-                      <span ref={stat30kRef}>{item.value}</span>
-                      {item.suffix}
-                    </span>
-                    <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray-100 flex items-center justify-center mt-3">
-                      <span className="text-lg md:text-xl">🚀</span>
-                    </div>
+                    {item.type.includes("stat") && (
+                      <div className="space-y-6">
+                        <div className="flex justify-between items-end">
+                          <span className="text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-none">
+                            <span ref={
+                              item.type === "stat-92" ? stat92Ref : 
+                              item.type === "stat-100" ? stat100Ref : stat30kRef
+                            }>{item.value}</span>
+                            <span className="text-3xl md:text-4xl ml-1">{item.suffix}</span>
+                          </span>
+                          
+                          {/* Ikony / dodatki obok liczb */}
+                          {item.type === "stat-92" && (
+                            <div className="w-24 h-2 bg-black/[0.05] rounded-full overflow-hidden mb-2">
+                              <div ref={bar92Ref} className="h-full bg-black rounded-full w-0" />
+                            </div>
+                          )}
+                          {item.type === "stat-100" && (
+                            <div className="flex -space-x-3 mb-2">
+                              {[1,2,3].map(i => <div key={i} className="w-10 h-10 rounded-full bg-neutral-100 border-2 border-white shadow-sm" />)}
+                            </div>
+                          )}
+                        </div>
+                        
+                        <p className="text-base md:text-lg font-medium opacity-70 border-t border-black/[0.05] pt-6">
+                          {item.label}
+                        </p>
+                      </div>
+                    )}
                   </div>
-                  <p className="text-xs opacity-80 mt-2 font-medium border-t border-current/10 pt-2">
-                    {item.label}
-                  </p>
-                </>
-              )}
-
-              {item.type === "last-card" && (
-                <div className="flex flex-col h-full justify-center">
-                  <div className="w-8 h-8 bg-white text-blue-600 rounded-full flex items-center justify-center mb-3">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={2}
-                      stroke="currentColor"
-                      className="w-4 h-4"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M4.5 12.75l6 6 9-13.5"
-                      />
-                    </svg>
-                  </div>
-                  <p className="font-medium leading-tight tracking-tight" style={{ fontSize: "clamp(0.9rem, 2vh, 1.5rem)" }}>
-                    {item.content}
-                  </p>
                 </div>
-              )}
-            </div>
-          ))}
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

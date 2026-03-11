@@ -8,7 +8,7 @@ const features = [
   {
     id: 1,
     type: "text",
-    content: "Dostarczamy dedykowane rozwiązania oparte na kreatywności i precyzji. Gwarantujemy najwyższą jakość kodu oraz płynną komunikację na każdym etapie projektu.",
+    content: "Dostarcz dedykowane rozwiązania oparte na kreatywności i precyzji. Gwarantujemy najwyższą jakość kodu oraz płynną komunikację na każdym etapie projektu.",
   },
   {
     id: 2,
