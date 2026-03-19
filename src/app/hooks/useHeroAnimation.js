@@ -54,7 +54,7 @@ export function useHeroAnimation({
           if (width < 768) return "-50vw";
           if (width < 1024) return "-65vw";
           if (width < 1280) return "-100vw";
-          if (width < 1636) return "-200vw";
+          if (width < 1636) return "-140vw";
           return "-150vw";
         };
 

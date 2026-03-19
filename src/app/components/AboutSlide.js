@@ -65,7 +65,7 @@ return (
 {/* Zdjęcie jako pełne tło */}
 <div className="photo-bg absolute inset-0">
   <Image 
-    src="/portret.png" 
+    src="/portret2.png" 
     alt="Jakub" 
     fill 
     className="object-cover object-center" // Zmiana z object-top na object-center
