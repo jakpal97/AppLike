@@ -72,7 +72,7 @@ export default function WhyUsSection() {
             ref={titleRef}
             className="text-6xl md:text-7xl lg:text-[9rem] font-black tracking-tighter leading-[0.85] text-black"
           >
-            Dlaczego <br /> my?
+            Dlaczego <br /> ja?
           </h2>
         </div>
 

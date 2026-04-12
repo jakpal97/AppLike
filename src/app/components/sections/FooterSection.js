@@ -18,7 +18,7 @@ export default function FooterSection() {
         {/* KINETIC TYPOGRAPHY */}
         <div className="w-full overflow-hidden mb-8 md:mb-12">
           <h2 className="text-[clamp(3rem,12vw,16rem)] font-black uppercase leading-[0.8] tracking-tighter text-center whitespace-nowrap animate-marquee pb-8 md:pb-15">
-            Zacznijmy współpracę Zacznijmy współpracę
+          Masz projekt? Porozmawiajmy.
           </h2>
         </div>
 
@@ -71,7 +71,7 @@ export default function FooterSection() {
             AppLike
           </span>
           <p className="text-xs md:text-sm text-gray-500 uppercase tracking-widest relative z-10">
-            © 2024 Applike. Wszystkie prawa zastrzeżone.
+            © 2026 Applike. Wszystkie prawa zastrzeżone.
           </p>
         </div>
       </div>

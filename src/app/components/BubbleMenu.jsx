@@ -13,8 +13,14 @@ const MENU_ITEMS = [
     hoverStyles: { bgColor: '#000000', textColor: '#ffffff' }
   },
   {
+    label: 'O Mnie',
+    href: '/o-mnie',
+    rotation: 4,
+    hoverStyles: { bgColor: '#2563eb', textColor: '#ffffff' }
+  },
+  {
     label: 'Usługi',
-    href: '/#services', 
+    href: '/uslugi',
     rotation: 5,
     hoverStyles: { bgColor: '#2563eb', textColor: '#ffffff' }
   },

@@ -92,33 +92,33 @@ export const features = [
   {
     id: 1,
     type: "text",
-    content: "Dostarczamy dedykowane rozwiązania oparte na kreatywności i precyzji. Gwarantujemy najwyższą jakość kodu oraz płynną komunikację na każdym etapie projektu.",
+    content: "Jeden człowiek, pełna odpowiedzialność. Nie przerzucam Cię między działami — znam Twój projekt od A do Z i zawsze wiem, na jakim etapie jesteśmy.",
   },
   {
     id: 2,
     type: "stat-92",
     value: "98", // Podniosłem nieco dla lepszego efektu wizualnego
     suffix: "%",
-    label: "Zadowolonych klientów, którzy polecają nasze usługi i wracają z nowymi pomysłami.",
+    label: "Klientów, którzy wracają z nowymi projektami albo polecają mnie znajomym. To dla mnie najlepszy dowód jakości.",
   },
   {
     id: 3,
     type: "stat-100",
     value: "100",
     suffix: "%",
-    label: "Responsywności i optymalizacji pod kątem SEO w każdym wdrożonym projekcie.",
+    label: "Każda strona jest responsywna i zoptymalizowana pod SEO. To nie opcja — to standard, którego nie negocjuję.",
   },
   {
     id: 4,
     type: "stat-30k",
     value: "24",
     suffix: "h", // Czas reakcji wsparcia technicznego lub szybkość wyceny
-    label: "Maksymalny czas reakcji na zapytania, zapewniający pełne wsparcie Twojego biznesu.",
+    label: "Maksymalny czas reakcji na Twoje zapytanie. Jestem dostępny i nie znikam po oddaniu projektu.",
   },
   {
     id: 5,
     type: "last-card",
-    content: "Tworzymy skuteczne rozwiązania cyfrowe, które realnie zwiększają Twoje zyski i budują przewagę rynkową.",
+    content: "Buduję strony, które zarabiają — nie tylko ładnie wyglądają. Konwersje, leady, sprzedaż — mierzę wyniki i optymalizuję, żeby realnie rosły.",
   },
 ];
 
@@ -164,5 +164,5 @@ export const testimonials = [
 // === TEKSTY ===
 export const heroText = {
   main: "Strony",
-  matterText: "które mają znaczenia",
+  matterText: "które mają znaczenie",
 };

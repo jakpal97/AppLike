@@ -49,7 +49,7 @@ scrollTrigger: { trigger: sectionRef.current, start: 'top 60%' },
 // Zdjęcie scale in
 gsap.fromTo(
 '.photo-bg',
-                { scale: 1.08 },
+                { scale: 1.04 },
                 {
 scale: 1,
 duration: 1.6,
@@ -63,14 +63,16 @@ return () => ctx.revert()
 return (
 <section ref={sectionRef} id="o-mnie" className="relative h-screen w-full overflow-hidden bg-white">
 {/* Zdjęcie jako pełne tło */}
-<div className="photo-bg absolute inset-0">
-  <Image 
-    src="/portret.webp" 
-    alt="Jakub" 
-    fill 
-    className="object-cover object-center" // Zmiana z object-top na object-center
-    priority 
-  />
+<div className="photo-bg absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
+  <div className="relative w-full h-[90vh] md:h-[120vh] max-w-[1200px]"> 
+    <Image 
+      src="/portret.webp" 
+      alt="Jakub" 
+      fill 
+      className="object-contain object-bottom" // object-bottom dociągnie Cię do dołu napisu
+      priority 
+    />
+  </div>
 </div>
 {/* GÓRA — imię przesunięte niżej i w prawo, info po prawej */}
 <div className="absolute top-0 left-0 right-0 flex justify-between items-start p-10 md:p-20">
@@ -103,9 +105,9 @@ style={{ fontSize: 'clamp(56px, 8vw, 120px)' }}>
 </div>
 </div>
 {/* DÓŁ — napis, który zawsze się zmieści */}
-<div className="from-bottom absolute bottom-4 left-0 w-full px-6 md:px-12 pointer-events-none overflow-hidden">
+<div className="from-bottom bg-black text-white absolute bottom-4 left-0 w-full px-6 md:px-12 pointer-events-none overflow-hidden">
 <p
-className="font-sans font-black leading-none tracking-tighter text-black"
+className="font-sans font-black leading-none tracking-tighter text-white"
 style={{
 fontSize: '7.8vw', // Zredukowane, by zmieścić szerokie litery i kropki
 textAlign: 'justify',
